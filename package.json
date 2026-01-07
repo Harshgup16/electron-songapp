@@ -1,0 +1,13 @@
+{
+  "name": "little-calendar",
+  "productName": "Little Calendar",
+  "version": "1.0.0",
+  "description": "A minimal Electron calendar app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^latest"
+  }
+}
