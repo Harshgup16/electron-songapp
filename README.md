@@ -71,6 +71,6 @@ If you don’t need the tutorial content and just want a minimal Electron starte
 The repo provides a super simple boilerplate you can build on to make your own Electron desktop app.
 
 
-## ## Feedback & Contributions
+## Feedback & Contributions
 
 If you find something confusing or want to suggest improvements, feel free to open an issue or submit a pull request! Happy coding <3 - Nasha 
