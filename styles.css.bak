@@ -1,4 +1,4 @@
-﻿* {
+* {
   box-sizing: border-box;
 }
 
@@ -99,41 +99,8 @@ select {
 }
 
 .art-header {
-  display: none;
-}
-
-.art-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.album-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: 2;
-}
-
-.album-art.loaded {
-  opacity: 1;
-}
-
-.fallback-art {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  transition: opacity 0.35s ease;
-}
-
-.album-art.loaded ~ .fallback-art {
-  opacity: 0.3;
+  height: 0.7rem;
+  background: linear-gradient(90deg, rgba(246, 217, 255, 0.8), rgba(210, 184, 255, 0.9));
 }
 
 .art-scene {
@@ -224,66 +191,6 @@ select {
   transform: rotate(-15deg);
 }
 
-.seek-row {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 0.2rem;
-}
-
-.seek-bar {
-  flex: 1;
-  height: 0.5rem;
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.seek-bar::-webkit-slider-runnable-track {
-  height: 0.32rem;
-  border-radius: 999px;
-  background: rgba(220, 200, 255, 0.5);
-  border: 1px solid rgba(200, 170, 255, 0.4);
-}
-
-.seek-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9a0ff, #a07cdc);
-  border: 2px solid #fff;
-  box-shadow: 0 2px 5px rgba(140, 100, 180, 0.4);
-  margin-top: -0.2rem;
-  transition: transform 0.12s ease;
-}
-
-.seek-bar::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
-
-.seek-bar::-moz-range-track {
-  height: 0.32rem;
-  border-radius: 999px;
-  background: rgba(220, 200, 255, 0.5);
-  border: 1px solid rgba(200, 170, 255, 0.4);
-}
-
-.seek-bar::-moz-range-thumb {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9a0ff, #a07cdc);
-  border: 2px solid #fff;
-  box-shadow: 0 2px 5px rgba(140, 100, 180, 0.4);
-}
-
-.seek-bar:focus {
-  outline: none;
-}
-
 .controls {
   width: 100%;
   display: flex;
@@ -325,16 +232,6 @@ select {
   background: rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(210, 180, 255, 0.5);
   cursor: pointer;
-  -webkit-app-region: no-drag;
-  transition: background 0.15s ease;
-}
-
-.playlist-item:hover {
-  background: rgba(230, 210, 255, 0.7);
-}
-
-.playlist-item:active {
-  transform: scale(0.98);
 }
 
 .playlist-item.is-active {
@@ -424,17 +321,14 @@ select {
 .menu-overlay {
   position: fixed;
   inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 1.5rem;
+  display: grid;
+  place-items: center;
   background: rgba(120, 90, 165, 0.35);
   backdrop-filter: blur(6px);
-  z-index: 1000;
+  z-index: 10;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.18s ease;
-  /* -webkit-app-region: no-drag; */
 }
 
 .menu-overlay.is-open {
@@ -484,54 +378,4 @@ select {
 .menu-popup-body .playlist-list {
   max-height: 6rem;
   overflow: auto;
-}
-
-/* ===== JAM FEATURE ===== */
-.jam-button {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid rgba(180, 140, 220, 0.5);
-  background: rgba(255, 255, 255, 0.7);
-  color: #8f6abf;
-  font-size: 0.65rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  -webkit-app-region: no-drag;
-}
-
-.jam-button:hover {
-  background: rgba(230, 210, 255, 0.6);
-  border-color: rgba(160, 120, 200, 0.7);
-}
-
-.jam-button:active {
-  transform: scale(0.95);
-}
-
-.jam-dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: #aaa;
-  transition: all 0.3s ease;
-}
-
-.jam-button[data-active="true"] {
-  background: linear-gradient(135deg, rgba(100, 220, 150, 0.35), rgba(80, 200, 130, 0.25));
-  border-color: rgba(80, 180, 120, 0.6);
-  color: #3d8a5a;
-}
-
-.jam-button[data-active="true"] .jam-dot {
-  background: #4ade80;
-  box-shadow: 0 0 6px rgba(74, 222, 128, 0.8);
-  animation: jam-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes jam-pulse {
-  0%, 100% { box-shadow: 0 0 4px rgba(74, 222, 128, 0.5); }
-  50% { box-shadow: 0 0 10px rgba(74, 222, 128, 0.9); }
 }

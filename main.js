@@ -2,9 +2,9 @@ const { app, BrowserWindow } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
-    title: "My little calendar",
+    title: "Pastel Song Player",
     width: 214,
-    height: 228,
+    height: 330,
     resizable: false,
     maximizable: false,
     fullscreenable: false,

@@ -2,19 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Calendar Widget</title>
+    <title>Pastel Song Player</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <div class="app">
-        <div class="title">Nasha's Calendar</div>
-        <div id="calendar">
-            <div id="day"></div>
-            <div id="month"></div>
+      <div class="player">
+        <div class="player-title">Our Player</div>
+
+        <div class="player-frame">
+          <div class="art-card">
+            <div class="art-header"></div>
+            <div class="art-container">
+              <img class="album-art" src="" alt="Album cover" />
+              <div class="art-scene fallback-art">
+                <div class="scene-sky"></div>
+                <div class="scene-horizon"></div>
+                <div class="scene-trees"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="seek-row">
+            <input type="range" class="seek-bar" min="0" max="100" value="0" step="0.1" aria-label="Seek">
+          </div>
+
+          <div class="controls">
+            <div class="controls-row primary">
+              <button class="icon-button" aria-label="Previous">
+                <span class="icon">⏮</span>
+              </button>
+              <button class="play-button" aria-label="Play" data-state="paused">
+                <span class="icon">▶</span>
+              </button>
+              <button class="icon-button" aria-label="Next">
+                <span class="icon">⏭</span>
+              </button>
+            </div>
+            <div class="controls-row secondary">
+              <button class="menu-button">Menu</button>
+              <button class="jam-button" data-active="false">
+                <span class="jam-dot"></span>
+                <span class="jam-text">JAM (0)</span>
+              </button>
+              <div class="hearts" aria-label="Likes">
+                <span>❤</span>
+                <span>❤</span>
+                <span>❤</span>
+              </div>
+            </div>
+          </div>
+
         </div>
+      </div>
     </div>
 
+    <div class="menu-overlay" hidden>
+      <div class="menu-popup" role="dialog" aria-modal="true" aria-label="Song menu">
+        <div class="menu-popup-header">
+          <div class="menu-popup-title">Song Menu</div>
+          <button class="menu-close" aria-label="Close">✕</button>
+        </div>
+        <div class="menu-popup-body">
+          <div class="playlist-title">Songs</div>
+          <ul class="playlist-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audio"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.48.1/dist/umd/supabase.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
