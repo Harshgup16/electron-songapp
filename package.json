@@ -1,13 +1,26 @@
 {
-  "name": "little-calendar",
-  "productName": "Little Calendar",
+  "name": "mysong",
+  "productName": "SoulSync",
   "version": "1.0.0",
-  "description": "A minimal Electron calendar app",
+  "description": "A pastel-themed Electron music player",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build:win": "electron-builder --win"
   },
   "devDependencies": {
-    "electron": "latest"
+    "electron": "latest",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.harshgupta.soulsync",
+    "productName": "SoulSync",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "assets/SoulSync.ico",
+      "target": "nsis"
+    }
   }
 }

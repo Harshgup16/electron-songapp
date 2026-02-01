@@ -1,4 +1,6 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Tray, Menu } = require("electron");
+const path = require("path");
+let tray = null;
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -11,6 +13,7 @@ function createWindow() {
     frame: false, 
     transparent: true,
     background: "#00000000",
+    icon: path.join(__dirname, "assets", "SoulSync.ico"),
     webPreferences: {
       contextIsolation: true
     }
@@ -19,7 +22,23 @@ function createWindow() {
   win.loadFile("index.html");
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  createWindow();
+
+  const iconPath = path.join(__dirname, "assets", "SoulSync.ico");
+  tray = new Tray(iconPath);
+  const menuTemplate = [
+    {
+      label: "Quit",
+      click: () => {
+        app.quit();
+      }
+    }
+  ];
+  const trayMenu = Menu.buildFromTemplate(menuTemplate);
+  tray.setContextMenu(trayMenu);
+  tray.setToolTip("SoulSync");
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
