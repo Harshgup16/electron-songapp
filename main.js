@@ -4,7 +4,7 @@ function createWindow() {
   const win = new BrowserWindow({
     title: "Pastel Song Player",
     width: 214,
-    height: 330,
+    height: 310,
     resizable: false,
     maximizable: false,
     fullscreenable: false,

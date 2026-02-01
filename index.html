@@ -30,14 +30,29 @@
 
           <div class="controls">
             <div class="controls-row primary">
+              <button class="icon-button repeat-button" aria-label="Repeat">
+                <img class="icon-svg" src="assets/repeat-svg.svg" alt="" aria-hidden="true" />
+              </button>
               <button class="icon-button" aria-label="Previous">
-                <span class="icon">⏮</span>
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6h2v12H6zM20 6l-9 6 9 6V6z" />
+                </svg>
               </button>
               <button class="play-button" aria-label="Play" data-state="paused">
-                <span class="icon">▶</span>
+                <svg class="icon-svg icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg class="icon-svg icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                </svg>
               </button>
               <button class="icon-button" aria-label="Next">
-                <span class="icon">⏭</span>
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 6h2v12h-2zM4 6l9 6-9 6V6z" />
+                </svg>
+              </button>
+              <button class="icon-button shuffle-button" aria-label="Shuffle">
+                <img class="icon-svg" src="assets/shuffle-svg.svg" alt="" aria-hidden="true" />
               </button>
             </div>
             <div class="controls-row secondary">
@@ -63,6 +78,9 @@
         <div class="menu-popup-header">
           <div class="menu-popup-title">Song Menu</div>
           <button class="menu-close" aria-label="Close">✕</button>
+        </div>
+        <div class="menu-search">
+          <input type="text" class="search-input" placeholder="Search songs..." />
         </div>
         <div class="menu-popup-body">
           <div class="playlist-title">Songs</div>
