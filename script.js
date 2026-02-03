@@ -38,6 +38,35 @@ let currentIndex = 0;
 let isRepeat = false;
 let isShuffle = false;
 
+function findSongIndexByUrl(url) {
+    if (!url) return -1;
+    return songs.findIndex((track) => track.url === url);
+}
+
+function applyRemoteTrack(payload) {
+    if (payload.songUrl) {
+        const idx = findSongIndexByUrl(payload.songUrl);
+        if (idx >= 0) {
+            currentIndex = idx;
+            setActiveSong();
+            return true;
+        }
+        if (audio) {
+            audio.src = payload.songUrl;
+        }
+        if (playerTitle && payload.songName) {
+            playerTitle.textContent = payload.songName;
+        }
+        return true;
+    }
+    if (payload.songIndex !== undefined && payload.songIndex !== currentIndex) {
+        currentIndex = payload.songIndex;
+        setActiveSong();
+        return true;
+    }
+    return false;
+}
+
 function getRandomIndex() {
     if (songs.length <= 1) return currentIndex;
     let nextIndex = currentIndex;
@@ -104,10 +133,7 @@ function handleBroadcast(payload) {
     
     switch (action) {
         case "play":
-            if (payload.songIndex !== undefined && payload.songIndex !== currentIndex) {
-                currentIndex = payload.songIndex;
-                setActiveSong();
-            }
+            applyRemoteTrack(payload);
             if (payload.currentTime !== undefined) {
                 audio.currentTime = payload.currentTime;
             }
@@ -125,14 +151,10 @@ function handleBroadcast(payload) {
         case "next":
         case "prev":
         case "select":
-            if (payload.songIndex !== undefined) {
-                currentIndex = payload.songIndex;
-                setActiveSong();
-                if (payload.isPlaying) {
-                    audio.play().catch(() => {});
-                    playButton.dataset.state = "playing";
-                    player?.classList.add("is-playing");
-                }
+            if (applyRemoteTrack(payload) && payload.isPlaying) {
+                audio.play().catch(() => {});
+                playButton.dataset.state = "playing";
+                player?.classList.add("is-playing");
             }
             break;
             
@@ -267,6 +289,8 @@ if (playButton) {
                 audio.play().catch(() => {});
                 broadcastAction("play", {
                     songIndex: currentIndex,
+                    songUrl: songs[currentIndex]?.url,
+                    songName: songs[currentIndex]?.name,
                     currentTime: audio.currentTime
                 });
             }
@@ -289,6 +313,8 @@ if (prevButton) {
         }
         broadcastAction("prev", {
             songIndex: currentIndex,
+            songUrl: songs[currentIndex]?.url,
+            songName: songs[currentIndex]?.name,
             isPlaying
         });
     });
@@ -309,6 +335,8 @@ if (nextButton) {
         }
         broadcastAction("next", {
             songIndex: currentIndex,
+            songUrl: songs[currentIndex]?.url,
+            songName: songs[currentIndex]?.name,
             isPlaying
         });
     });
@@ -408,6 +436,8 @@ function renderPlaylist(filter = "") {
             audio?.play().catch(() => {});
             broadcastAction("select", {
                 songIndex: currentIndex,
+                songUrl: songs[currentIndex]?.url,
+                songName: songs[currentIndex]?.name,
                 isPlaying: true
             });
             closeMenu();
