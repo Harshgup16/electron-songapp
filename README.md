@@ -1,4 +1,4 @@
-# MySong Player
+# SoulSync
 
 A pastel-themed desktop music player built with HTML, CSS, JavaScript, and ElectronJS. Features real-time JAM sessions where multiple users can listen together and sync playback across different locations.
 
